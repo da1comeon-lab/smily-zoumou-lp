@@ -1,0 +1,19 @@
+<svg width="960" height="1200" viewBox="0 0 960 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1200" fill="#F3EADF"/>
+  <path d="M0 0H960V1200H0V0Z" fill="url(#paint0_linear_1_2)"/>
+  <circle cx="736" cy="244" r="196" fill="#D99B8C" fill-opacity="0.2"/>
+  <circle cx="172" cy="892" r="260" fill="#87947C" fill-opacity="0.16"/>
+  <path d="M264 778C284 566 388 448 527 448C640 448 724 530 724 648C724 798 604 900 480 900C372 900 270 844 264 778Z" fill="#6F5140" fill-opacity="0.2"/>
+  <path d="M315 662C315 536 393 436 500 436C607 436 685 536 685 662C685 788 606 890 500 890C394 890 315 788 315 662Z" fill="#FFF9F2"/>
+  <path d="M324 594C348 482 417 404 509 404C614 404 694 502 705 631C654 573 584 540 500 540C425 540 362 560 324 594Z" fill="#3F3028" fill-opacity="0.72"/>
+  <path d="M353 724C399 766 446 786 499 786C553 786 604 765 647 724" stroke="#D99B8C" stroke-width="20" stroke-linecap="round"/>
+  <rect x="210" y="945" width="540" height="76" rx="38" fill="white" fill-opacity="0.7"/>
+  <text x="480" y="992" text-anchor="middle" fill="#6F5140" font-family="Arial, sans-serif" font-size="30" font-weight="700">差し替え用メイン画像</text>
+  <defs>
+    <linearGradient id="paint0_linear_1_2" x1="0" y1="0" x2="960" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF9"/>
+      <stop offset="0.45" stop-color="#F3EADF"/>
+      <stop offset="1" stop-color="#E8D9C9"/>
+    </linearGradient>
+  </defs>
+</svg>

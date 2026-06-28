@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #3f3028;
+  background: #fbf7f0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(217, 155, 140, 0.14), transparent 32rem),
+    linear-gradient(180deg, #fbf7f0 0%, #fffaf5 48%, #fbf7f0 100%);
+  color: #3f3028;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #d99b8c;
+  color: #fff;
+}
+
+.section-pad {
+  padding: 4.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding: 6rem 1.5rem;
+  }
+}
