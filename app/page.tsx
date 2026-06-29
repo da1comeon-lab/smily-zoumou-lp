@@ -17,7 +17,8 @@ import {
 } from "@/lib/site-data";
 import { siteUrl } from "@/lib/site-url";
 
-const googleMapEmbedUrl = "";
+const googleMapEmbedUrl =
+  "https://www.google.com/maps?q=%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E6%97%AD%E5%8C%BA%E9%AB%98%E6%AE%BF4%E4%B8%81%E7%9B%AE22-22%20%E3%82%B8%E3%83%A7%E3%82%A4%E3%83%86%E3%83%AB%E9%AB%98%E6%AE%BF311&output=embed";
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
