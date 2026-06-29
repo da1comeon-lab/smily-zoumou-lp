@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 
-const siteTitle = "大阪・関目高殿の増毛エクステ専門店｜増毛エクステサロンsmily";
+const siteTitle = "大阪の増毛エクステ専門店｜分け目・つむじ・前髪の自然なボリューム｜smily";
 const siteDescription =
-  "大阪市旭区・関目高殿駅徒歩1分の増毛エクステ専門サロン。分け目・つむじ・前髪・トップのボリュームが気になる方へ、完全予約制のプライベート空間で自然な仕上がりをご提案します。";
+  "大阪市旭区・関目高殿駅徒歩1分の増毛エクステ専門サロン。分け目・つむじ・前髪・トップのボリューム、地肌の透け感、髪がぺたんとするお悩みに、完全予約制のプライベート空間で自然な仕上がりをご提案します。";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

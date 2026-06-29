@@ -8,16 +8,27 @@ import {
   lineUrl,
   menuGroups,
   reasons,
+  reviews,
+  searchNeeds,
   shopInfo,
-  steps
+  staffFeatures,
+  steps,
+  trustHighlights
 } from "@/lib/site-data";
+import { siteUrl } from "@/lib/site-url";
+
+const googleMapEmbedUrl = "";
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "BeautySalon",
   name: "増毛エクステサロンsmily",
   alternateName: "ゾウモウエクステサロン スマイリー",
-  url: bookingUrl,
+  url: siteUrl,
+  sameAs: [bookingUrl],
+  image: `${siteUrl}/smily-main-hero.png`,
+  description:
+    "大阪市旭区・関目高殿駅徒歩1分の増毛エクステ専門サロン。分け目・つむじ・前髪・トップの自然なボリューム感をご提案します。",
   telephone: "",
   address: {
     "@type": "PostalAddress",
@@ -42,7 +53,31 @@ const localBusinessJsonLd = {
   },
   paymentAccepted:
     "Visa, Mastercard, JCB, American Express, Diners Club, Discover, 交通系電子マネー, iD, QUICPay, PayPay, 現金",
-  areaServed: "大阪市旭区・関目高殿"
+  areaServed: ["大阪市旭区", "関目高殿", "関目成育", "関目"],
+  makesOffer: [
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "増毛エクステ",
+        serviceType: "増毛エクステ"
+      },
+      areaServed: "大阪市旭区・関目高殿"
+    }
+  ]
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a
+    }
+  }))
 };
 
 export default function Home() {
@@ -51,6 +86,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <section className="relative overflow-hidden px-4 pb-16 pt-5 md:px-6 md:pb-24">
@@ -82,6 +121,17 @@ export default function Home() {
               className="absolute left-[29.3%] top-[66%] h-[8.8%] w-[22.6%] rounded-full focus:outline-none focus:ring-4 focus:ring-blush/50"
             />
           </div>
+
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {trustHighlights.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-almond bg-white/90 p-4 shadow-sm">
+                <p className="text-[11px] font-bold tracking-[0.12em] text-sage">{item.label}</p>
+                <p className="mt-1 text-lg font-bold text-walnut">{item.value}</p>
+                <p className="mt-1 text-xs leading-5 text-cocoa">{item.note}</p>
+              </div>
+            ))}
+          </div>
+
           <div className="mt-6 md:hidden">
             <CTAButtons />
           </div>
@@ -99,6 +149,22 @@ export default function Home() {
             <div key={concern} className="rounded-2xl border border-almond/70 bg-white px-5 py-5 text-base font-semibold text-walnut shadow-sm">
               {concern}
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-pad bg-cream/70">
+        <SectionHeading
+          eyebrow="Search Needs"
+          title="大阪で髪のボリュームが気になる方へ"
+          lead="「増毛エクステ」という言葉を知らない方でも大丈夫です。分け目・つむじ・前髪・トップの見え方や、地肌の透け感が気になる方に向けた美容メニューです。"
+        />
+        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2">
+          {searchNeeds.map((item) => (
+            <article key={item.title} className="rounded-2xl border border-almond bg-white p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-walnut">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-cocoa">{item.text}</p>
+            </article>
           ))}
         </div>
       </section>
@@ -129,14 +195,40 @@ export default function Home() {
       <section className="section-pad bg-linen/65">
         <SectionHeading eyebrow="Reasons" title="smilyが選ばれる理由" />
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
-          {reasons.map((reason, index) => (
-            <div key={reason} className="rounded-2xl bg-white p-6 shadow-sm">
-              <span className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-blush/20 text-sm font-bold text-cocoa">
-                {index + 1}
+          {reasons.map((reason) => (
+            <div key={reason.title} className="rounded-2xl bg-white p-6 shadow-sm">
+              <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full border border-almond bg-cream text-xs font-bold text-cocoa">
+                {reason.icon}
               </span>
-              <h3 className="text-lg font-bold text-walnut">{reason}</h3>
+              <h3 className="text-lg font-bold text-walnut">{reason.title}</h3>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="section-pad bg-white/65">
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+          <div className="overflow-hidden rounded-[1.75rem] border border-almond bg-white shadow-soft">
+            <img
+              src="/staff-placeholder.svg"
+              alt="担当スタッフ写真の差し替え用プレースホルダー"
+              className="block aspect-[4/3] w-full object-cover"
+            />
+          </div>
+          <div>
+            <SectionHeading
+              eyebrow="Staff"
+              title="担当スタッフ紹介"
+              lead="増毛エクステが初めての方にも安心してご相談いただけるよう、カウンセリングから仕上がり確認までマンツーマンで対応します。分け目・つむじ・前髪など、気になる部分に合わせて自然な仕上がりをご提案します。"
+            />
+            <div className="grid gap-3 sm:grid-cols-2">
+              {staffFeatures.map((feature) => (
+                <div key={feature} className="rounded-2xl border border-almond bg-cream px-5 py-4 text-sm font-bold text-cocoa">
+                  {feature}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -144,44 +236,31 @@ export default function Home() {
         <SectionHeading
           eyebrow="Before / After"
           title="仕上がりイメージ"
-          lead="写真は後から差し替えできるよう、4つの枠を用意しています。施術写真や比較画像に置き換えてご利用ください。"
+          lead="施術写真や比較画像に置き換えて利用できます。前髪・分け目・つむじの3枠を用意しています。"
         />
-        <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-3">
           {beforeAfterItems.map((item) => (
-            <article
-              key={item.title}
-              className={`overflow-hidden rounded-2xl bg-white shadow-sm ${
-                item.imageSrc ? "sm:col-span-2 lg:col-span-4" : ""
-              }`}
-            >
-              <div
-                className={
-                  item.imageSrc
-                    ? "bg-cream p-2 md:p-4"
-                    : "aspect-[4/3] bg-[linear-gradient(135deg,#f3eadf,#ffffff_48%,#e8d9c9)] p-4"
-                }
-              >
-                <div
-                  className={
-                    item.imageSrc
-                      ? "overflow-hidden rounded-xl"
-                      : "flex h-full items-center justify-center rounded-xl border border-dashed border-cocoa/25 text-sm font-bold text-cocoa"
-                  }
-                >
-                  {item.imageSrc ? (
-                    <img src={item.imageSrc} alt={item.imageAlt} className="block h-auto w-full" />
-                  ) : (
-                    `${item.title} 画像`
-                  )}
+            <article key={item.title} className="overflow-hidden rounded-2xl bg-white shadow-sm">
+              <div className="bg-cream p-2 md:p-3">
+                <div className="overflow-hidden rounded-xl">
+                  <img src={item.imageSrc} alt={item.imageAlt} className="block h-auto w-full" />
                 </div>
               </div>
               <div className="p-5">
-                <h3 className="font-bold text-walnut">{item.title}</h3>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="font-bold text-walnut">{item.title}</h3>
+                  <span className="rounded-full bg-linen px-3 py-1 text-xs font-bold text-cocoa">
+                    {item.estimate}
+                  </span>
+                </div>
                 <p className="mt-2 text-sm leading-6 text-cocoa">{item.caption}</p>
               </div>
             </article>
           ))}
         </div>
+        <p className="mx-auto mt-5 max-w-3xl text-center text-xs leading-6 text-cocoa/75">
+          本数は状態により異なります。髪質や状態によって本数・仕上がりは変わります。
+        </p>
       </section>
 
       <section id="price" className="section-pad bg-white/70">
@@ -214,6 +293,23 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section-pad bg-linen/50">
+        <SectionHeading
+          eyebrow="Reviews"
+          title="お客様の声"
+          lead="初めての方や、他店からの乗り換えを検討している方にも相談しやすいように、丁寧なカウンセリングを大切にしています。"
+        />
+        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
+          {reviews.map((review) => (
+            <article key={review.text} className="rounded-2xl border border-almond bg-white p-6 shadow-sm">
+              <p className="text-sm font-bold tracking-[0.18em] text-blush">★★★★★</p>
+              <p className="mt-4 text-sm leading-7 text-cocoa">{review.text}</p>
+              <p className="mt-5 text-sm font-bold text-walnut">{review.person}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="section-pad">
         <SectionHeading eyebrow="Flow" title="施術の流れ" />
         <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
@@ -229,11 +325,16 @@ export default function Home() {
       <section className="section-pad bg-linen/60">
         <SectionHeading eyebrow="FAQ" title="よくある質問" />
         <div className="mx-auto max-w-4xl space-y-3">
-          {faqs.map((faq) => (
-            <details key={faq.q} className="group rounded-2xl bg-white p-5 shadow-sm">
-              <summary className="cursor-pointer list-none text-base font-bold text-walnut">
-                <span className="mr-2 text-sage">Q.</span>
-                {faq.q}
+          {faqs.map((faq, index) => (
+            <details key={faq.q} open={index < 2} className="group rounded-2xl bg-white p-5 shadow-sm">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold text-walnut">
+                <span>
+                  <span className="mr-2 text-sage">Q.</span>
+                  {faq.q}
+                </span>
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-cream text-cocoa transition group-open:rotate-45">
+                  +
+                </span>
               </summary>
               <p className="mt-4 border-t border-almond/70 pt-4 text-sm leading-7 text-cocoa">
                 <span className="mr-2 font-bold text-blush">A.</span>
@@ -250,35 +351,53 @@ export default function Home() {
           title="店舗情報"
           lead="関目高殿駅4番出口から徒歩1分。完全予約制のプライベートサロンです。"
         />
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] border border-almond bg-white shadow-soft">
-          {shopInfo.map(([label, value]) => (
-            <div key={label} className="grid gap-2 border-b border-almond/70 px-5 py-4 last:border-b-0 md:grid-cols-[12rem_1fr] md:px-7">
-              <dt className="text-sm font-bold text-walnut">{label}</dt>
-              <dd className="text-sm leading-7 text-cocoa">{value}</dd>
-            </div>
-          ))}
+        <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[1fr_0.9fr]">
+          <dl className="overflow-hidden rounded-[1.75rem] border border-almond bg-white shadow-soft">
+            {shopInfo.map(([label, value]) => (
+              <div key={label} className="grid gap-2 border-b border-almond/70 px-5 py-4 last:border-b-0 md:grid-cols-[10rem_1fr] md:px-7">
+                <dt className="text-sm font-bold text-walnut">{label}</dt>
+                <dd className="text-sm leading-7 text-cocoa">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="overflow-hidden rounded-[1.75rem] border border-almond bg-white shadow-soft">
+            {googleMapEmbedUrl ? (
+              <iframe
+                src={googleMapEmbedUrl}
+                title="増毛エクステサロンsmilyのGoogleマップ"
+                className="h-full min-h-[320px] w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <div className="flex min-h-[320px] flex-col items-center justify-center bg-cream p-6 text-center">
+                <p className="text-sm font-bold text-walnut">Googleマップ埋め込み枠</p>
+                <p className="mt-3 text-sm leading-7 text-cocoa">
+                  実際のiframe URLを取得後、app/page.tsx の googleMapEmbedUrl に設定して差し替えできます。
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
       <section className="px-4 pb-20 md:px-6">
         <div className="mx-auto max-w-5xl rounded-[2rem] bg-walnut p-7 text-white shadow-soft md:p-10">
           <p className="text-sm font-semibold text-almond">Reserve / Contact</p>
-          <h2 className="mt-3 text-2xl font-bold leading-tight md:text-4xl">
-            まずは空席確認、またはLINEで気軽にご相談ください。
-          </h2>
+          <h2 className="mt-3 text-2xl font-bold leading-tight md:text-4xl">まずは相談だけでもOK</h2>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-linen">
-            初めての方も、他店からの乗り換えを検討中の方も、気になる部分や本数を相談しながら選べます。
+            本数や仕上がりが分からない方も、気になる部分を相談しながら選べます。
           </p>
           <div className="mt-7 grid gap-3 sm:grid-cols-2">
             <a
               href={bookingUrl}
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold text-walnut transition hover:bg-linen"
+              className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold text-walnut transition hover:bg-linen"
             >
-              ホットペッパーで予約する
+              空席確認・予約する
             </a>
             <a
               href={lineUrl}
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+              className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/35 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
             >
               LINEで相談する
             </a>
