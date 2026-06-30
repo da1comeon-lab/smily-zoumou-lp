@@ -207,32 +207,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-pad bg-white/65">
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-center">
-          <div className="overflow-hidden rounded-[1.75rem] border border-almond bg-white shadow-soft">
-            <img
-              src="/staff-placeholder.svg"
-              alt="担当スタッフ写真の差し替え用プレースホルダー"
-              className="block aspect-[4/3] w-full object-cover"
-            />
-          </div>
-          <div>
-            <SectionHeading
-              eyebrow="Staff"
-              title="担当スタッフ紹介"
-              lead="増毛エクステが初めての方にも安心してご相談いただけるよう、カウンセリングから仕上がり確認までマンツーマンで対応します。分け目・つむじ・前髪など、気になる部分に合わせて自然な仕上がりをご提案します。"
-            />
-            <div className="grid gap-3 sm:grid-cols-2">
-              {staffFeatures.map((feature) => (
-                <div key={feature} className="rounded-2xl border border-almond bg-cream px-5 py-4 text-sm font-bold text-cocoa">
-                  {feature}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="section-pad">
         <SectionHeading
           eyebrow="Before / After"
@@ -262,6 +236,18 @@ export default function Home() {
         <p className="mx-auto mt-5 max-w-3xl text-center text-xs leading-6 text-cocoa/75">
           本数は状態により異なります。髪質や状態によって本数・仕上がりは変わります。
         </p>
+      </section>
+
+      <section className="section-pad">
+        <SectionHeading eyebrow="Flow" title="施術の流れ" />
+        <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
+          {steps.map(([label, title]) => (
+            <div key={label} className="rounded-2xl border border-almond bg-white p-6 shadow-sm">
+              <p className="text-xs font-bold tracking-[0.18em] text-sage">{label}</p>
+              <h3 className="mt-3 text-lg font-bold text-walnut">{title}</h3>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section id="price" className="section-pad bg-white/70">
@@ -311,18 +297,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-pad">
-        <SectionHeading eyebrow="Flow" title="施術の流れ" />
-        <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
-          {steps.map(([label, title]) => (
-            <div key={label} className="rounded-2xl border border-almond bg-white p-6 shadow-sm">
-              <p className="text-xs font-bold tracking-[0.18em] text-sage">{label}</p>
-              <h3 className="mt-3 text-lg font-bold text-walnut">{title}</h3>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section className="section-pad bg-linen/60">
         <SectionHeading eyebrow="FAQ" title="よくある質問" />
         <div className="mx-auto max-w-4xl space-y-3">
@@ -343,6 +317,32 @@ export default function Home() {
               </p>
             </details>
           ))}
+        </div>
+      </section>
+
+      <section className="section-pad bg-white/65">
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+          <div className="overflow-hidden rounded-[1.75rem] border border-almond bg-white shadow-soft">
+            <img
+              src="/staff-placeholder.svg"
+              alt="担当スタッフ写真の差し替え用プレースホルダー"
+              className="block aspect-[4/3] w-full object-cover"
+            />
+          </div>
+          <div>
+            <SectionHeading
+              eyebrow="Staff"
+              title="担当スタッフ紹介"
+              lead="増毛エクステが初めての方にも安心してご相談いただけるよう、カウンセリングから仕上がり確認までマンツーマンで対応します。分け目・つむじ・前髪など、気になる部分に合わせて自然な仕上がりをご提案します。"
+            />
+            <div className="grid gap-3 sm:grid-cols-2">
+              {staffFeatures.map((feature) => (
+                <div key={feature} className="rounded-2xl border border-almond bg-cream px-5 py-4 text-sm font-bold text-cocoa">
+                  {feature}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
