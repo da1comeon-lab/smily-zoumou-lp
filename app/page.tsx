@@ -98,13 +98,30 @@ export default function Home() {
           <a href="#" className="text-sm font-bold text-walnut md:text-base">
             増毛エクステサロンsmily
           </a>
-          <a href={bookingUrl} className="text-sm font-semibold text-cocoa underline underline-offset-4">
+          <a
+            href={bookingUrl}
+            className="inline-flex min-h-12 items-center rounded-full bg-cream px-4 text-sm font-semibold text-cocoa underline underline-offset-4 md:bg-transparent md:px-0"
+          >
             予約ページへ
           </a>
         </div>
 
         <div className="mx-auto max-w-6xl pt-7 md:pt-12">
-          <h1 className="sr-only">分け目・つむじ・前髪に自然なボリュームを</h1>
+          <div className="mb-5 rounded-[1.5rem] border border-almond bg-white/90 p-5 shadow-sm md:hidden">
+            <p className="text-xs font-bold tracking-[0.14em] text-sage">大阪・関目高殿駅 徒歩1分</p>
+            <h1 className="mt-3 text-3xl font-bold leading-snug text-walnut">
+              分け目・つむじ・前髪に自然なボリュームを
+            </h1>
+            <p className="mt-3 text-[15px] leading-7 text-cocoa">
+              完全予約制の増毛エクステ専門プライベートサロン。必要な部分に必要な本数だけ、自然に髪の印象を整えます。
+            </p>
+            <div className="mt-5">
+              <CTAButtons />
+            </div>
+          </div>
+          <h1 className="sr-only md:not-sr-only md:mb-7 md:text-4xl md:font-bold md:leading-tight md:text-walnut">
+            分け目・つむじ・前髪に自然なボリュームを
+          </h1>
           <div className="relative overflow-hidden rounded-[1.5rem] bg-linen shadow-soft md:rounded-[2rem]">
             <img
               src="/smily-main-hero.png"
@@ -114,27 +131,23 @@ export default function Home() {
             <a
               href={bookingUrl}
               aria-label="空席確認・予約する"
-              className="absolute left-[4.6%] top-[66%] h-[8.8%] w-[23.8%] rounded-full focus:outline-none focus:ring-4 focus:ring-blush/50"
+              className="hidden rounded-full focus:outline-none focus:ring-4 focus:ring-blush/50 md:absolute md:left-[4.6%] md:top-[66%] md:block md:h-[8.8%] md:w-[23.8%]"
             />
             <a
               href={lineUrl}
               aria-label="LINEで相談する"
-              className="absolute left-[29.3%] top-[66%] h-[8.8%] w-[22.6%] rounded-full focus:outline-none focus:ring-4 focus:ring-blush/50"
+              className="hidden rounded-full focus:outline-none focus:ring-4 focus:ring-blush/50 md:absolute md:left-[29.3%] md:top-[66%] md:block md:h-[8.8%] md:w-[22.6%]"
             />
           </div>
 
           <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {trustHighlights.map((item) => (
               <div key={item.label} className="rounded-2xl border border-almond bg-white/90 p-4 shadow-sm">
-                <p className="text-[11px] font-bold tracking-[0.12em] text-sage">{item.label}</p>
+                <p className="text-xs font-bold tracking-[0.12em] text-sage">{item.label}</p>
                 <p className="mt-1 text-lg font-bold text-walnut">{item.value}</p>
-                <p className="mt-1 text-xs leading-5 text-cocoa">{item.note}</p>
+                <p className="mt-1 text-[13px] leading-5 text-cocoa">{item.note}</p>
               </div>
             ))}
-          </div>
-
-          <div className="mt-6 md:hidden">
-            <CTAButtons />
           </div>
         </div>
       </section>
