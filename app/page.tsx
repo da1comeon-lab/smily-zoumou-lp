@@ -3,6 +3,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import {
   beforeAfterItems,
   bookingUrl,
+  blogLinks,
   concerns,
   faqs,
   lineUrl,
@@ -10,6 +11,7 @@ import {
   reasons,
   reviews,
   searchNeeds,
+  seoContentBlocks,
   shopInfo,
   staffFeatures,
   steps,
@@ -22,14 +24,15 @@ const googleMapEmbedUrl =
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "BeautySalon",
+  "@type": ["BeautySalon", "LocalBusiness"],
   name: "増毛エクステサロンsmily",
   alternateName: "ゾウモウエクステサロン スマイリー",
   url: siteUrl,
   sameAs: [bookingUrl],
-  image: `${siteUrl}/smily-main-hero.png`,
+  image: `${siteUrl}/smily-main-hero.webp`,
+  hasMap: googleMapEmbedUrl,
   description:
-    "大阪市旭区・関目高殿駅徒歩1分の増毛エクステ専門サロン。分け目・つむじ・前髪・トップの自然なボリューム感をご提案します。",
+    "大阪市旭区・関目高殿駅徒歩1分の増毛・増毛エクステ専門サロン。分け目・つむじ・前髪・トップの自然なボリューム感をご提案します。",
   telephone: "",
   address: {
     "@type": "PostalAddress",
@@ -54,7 +57,7 @@ const localBusinessJsonLd = {
   },
   paymentAccepted:
     "Visa, Mastercard, JCB, American Express, Diners Club, Discover, 交通系電子マネー, iD, QUICPay, PayPay, 現金",
-  areaServed: ["大阪市旭区", "関目高殿", "関目成育", "関目"],
+  areaServed: ["大阪市", "大阪市旭区", "関目高殿", "関目成育", "関目", "城東区", "都島区", "守口市", "東大阪市", "門真市", "寝屋川市"],
   makesOffer: [
     {
       "@type": "Offer",
@@ -64,6 +67,34 @@ const localBusinessJsonLd = {
         serviceType: "増毛エクステ"
       },
       areaServed: "大阪市旭区・関目高殿"
+    }
+  ]
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "増毛エクステサロンsmily",
+  url: siteUrl,
+  description: "大阪の増毛・増毛エクステ専門サロンsmilyの公式LPです。",
+  inLanguage: "ja-JP"
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "ホーム",
+      item: siteUrl
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "大阪の増毛エクステ専門店",
+      item: siteUrl
     }
   ]
 };
@@ -92,6 +123,14 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
 
       <section className="relative overflow-hidden px-4 pb-16 pt-5 md:px-6 md:pb-24">
         <div className="mx-auto flex max-w-6xl items-center justify-between py-3">
@@ -110,7 +149,7 @@ export default function Home() {
           <div className="mb-5 rounded-[1.5rem] border border-almond bg-white/90 p-5 shadow-sm md:hidden">
             <p className="text-xs font-bold tracking-[0.14em] text-sage">大阪・関目高殿駅 徒歩1分</p>
             <h1 className="mt-3 text-3xl font-bold leading-snug text-walnut">
-              分け目・つむじ・前髪に自然なボリュームを
+              大阪の増毛エクステ専門店
             </h1>
             <p className="mt-3 text-[15px] leading-7 text-cocoa">
               完全予約制の増毛エクステ専門プライベートサロン。必要な部分に必要な本数だけ、自然に髪の印象を整えます。
@@ -119,13 +158,15 @@ export default function Home() {
               <CTAButtons />
             </div>
           </div>
-          <h1 className="sr-only md:not-sr-only md:mb-7 md:text-4xl md:font-bold md:leading-tight md:text-walnut">
-            分け目・つむじ・前髪に自然なボリュームを
-          </h1>
+          <p className="sr-only md:not-sr-only md:mb-7 md:text-4xl md:font-bold md:leading-tight md:text-walnut">
+            大阪で自然な増毛エクステならsmily
+          </p>
           <div className="relative overflow-hidden rounded-[1.5rem] bg-linen shadow-soft md:rounded-[2rem]">
             <img
-              src="/smily-main-hero.png"
+              src="/smily-main-hero.webp"
               alt="分け目・つむじ・前髪に自然なボリュームを。大阪・関目高殿駅すぐの増毛エクステ専門プライベートサロン。"
+              loading="eager"
+              fetchPriority="high"
               className="block h-auto w-full"
             />
             <a
@@ -155,8 +196,8 @@ export default function Home() {
       <section className="section-pad bg-white/65">
         <SectionHeading
           eyebrow="Concerns"
-          title="こんなお悩みに寄り添います"
-          lead="気になる部分だけを自然にカバーしたい方へ。完全予約制の落ち着いた空間で、相談しながら本数を決められます。"
+          title="大阪で増毛を考える方のお悩み"
+          lead="大阪で気になる部分だけを自然にカバーしたい方へ。完全予約制の落ち着いた空間で、増毛エクステの本数を相談しながら決められます。"
         />
         <div className="mx-auto grid max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {concerns.map((concern) => (
@@ -170,7 +211,7 @@ export default function Home() {
       <section className="section-pad bg-cream/70">
         <SectionHeading
           eyebrow="Search Needs"
-          title="大阪で髪のボリュームが気になる方へ"
+          title="大阪で増毛エクステが気になる方へ"
           lead="「増毛エクステ」という言葉を知らない方でも大丈夫です。分け目・つむじ・前髪・トップの見え方や、地肌の透け感が気になる方に向けた美容メニューです。"
         />
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2">
@@ -180,6 +221,25 @@ export default function Home() {
               <p className="mt-3 text-sm leading-7 text-cocoa">{item.text}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section-pad bg-white/70">
+        <SectionHeading
+          eyebrow="SEO Guide"
+          title="増毛エクステ相談ガイド"
+          lead="大阪で増毛や増毛エクステを検討している方に向けて、初めてでも分かりやすい基礎情報をまとめました。"
+        />
+        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2">
+          {seoContentBlocks.map((block) => (
+            <article key={block.title} className="rounded-2xl border border-almond bg-white p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-walnut">{block.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-cocoa">{block.text}</p>
+            </article>
+          ))}
+        </div>
+        <div className="mx-auto mt-7 max-w-md">
+          <CTAButtons stacked />
         </div>
       </section>
 
@@ -207,7 +267,7 @@ export default function Home() {
       </section>
 
       <section className="section-pad bg-linen/65">
-        <SectionHeading eyebrow="Reasons" title="smilyが選ばれる理由" />
+        <SectionHeading eyebrow="Reasons" title="増毛エクステが選ばれる理由" />
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
           {reasons.map((reason) => (
             <div key={reason.title} className="rounded-2xl bg-white p-6 shadow-sm">
@@ -221,17 +281,17 @@ export default function Home() {
       </section>
 
       <section className="section-pad">
-        <SectionHeading
+          <SectionHeading
           eyebrow="Before / After"
-          title="仕上がりイメージ"
-          lead="施術写真や比較画像に置き換えて利用できます。前髪・分け目・つむじの3枠を用意しています。"
+          title="増毛エクステ施術例"
+          lead="前髪・分け目・つむじの仕上がりイメージを掲載しています。"
         />
         <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-3">
           {beforeAfterItems.map((item) => (
             <article key={item.title} className="overflow-hidden rounded-2xl bg-white shadow-sm">
               <div className="bg-cream p-2 md:p-3">
                 <div className="overflow-hidden rounded-xl">
-                  <img src={item.imageSrc} alt={item.imageAlt} className="block h-auto w-full" />
+                  <img src={item.imageSrc} alt={item.imageAlt} loading="lazy" className="block h-auto w-full" />
                 </div>
               </div>
               <div className="p-5">
@@ -242,6 +302,7 @@ export default function Home() {
                   </span>
                 </div>
                 <p className="mt-2 text-sm leading-6 text-cocoa">{item.caption}</p>
+                <p className="mt-2 text-xs leading-6 text-cocoa/80">{item.detail}</p>
               </div>
             </article>
           ))}
@@ -252,7 +313,7 @@ export default function Home() {
       </section>
 
       <section className="section-pad">
-        <SectionHeading eyebrow="Flow" title="施術の流れ" />
+        <SectionHeading eyebrow="Flow" title="増毛エクステを受ける流れ" />
         <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
           {steps.map(([label, title]) => (
             <div key={label} className="rounded-2xl border border-almond bg-white p-6 shadow-sm">
@@ -266,7 +327,7 @@ export default function Home() {
       <section id="price" className="section-pad bg-white/70">
         <SectionHeading
           eyebrow="Price"
-          title="料金表"
+          title="増毛エクステ料金表"
           lead="400本8,000円から。初回・他店乗り換え・再来リペアに分けて、分かりやすく掲載しています。"
         />
         <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3">
@@ -296,7 +357,7 @@ export default function Home() {
       <section className="section-pad bg-linen/50">
         <SectionHeading
           eyebrow="Reviews"
-          title="お客様の声"
+          title="増毛エクステを受けたお客様の声"
           lead="初めての方や、他店からの乗り換えを検討している方にも相談しやすいように、丁寧なカウンセリングを大切にしています。"
         />
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
@@ -311,7 +372,7 @@ export default function Home() {
       </section>
 
       <section className="section-pad bg-linen/60">
-        <SectionHeading eyebrow="FAQ" title="よくある質問" />
+        <SectionHeading eyebrow="FAQ" title="増毛エクステでよくある質問" />
         <div className="mx-auto max-w-4xl space-y-3">
           {faqs.map((faq, index) => (
             <details key={faq.q} open={index < 2} className="group rounded-2xl bg-white p-5 shadow-sm">
@@ -338,14 +399,15 @@ export default function Home() {
           <div className="overflow-hidden rounded-[1.75rem] border border-almond bg-white shadow-soft">
             <img
               src="/staff-placeholder.svg"
-              alt="担当スタッフ写真の差し替え用プレースホルダー"
+              alt="大阪の増毛エクステサロンsmilyの担当スタッフ写真"
+              loading="lazy"
               className="block aspect-[4/3] w-full object-cover"
             />
           </div>
           <div>
             <SectionHeading
               eyebrow="Staff"
-              title="担当スタッフ紹介"
+              title="増毛エクステ担当スタッフ紹介"
               lead="増毛エクステが初めての方にも安心してご相談いただけるよう、カウンセリングから仕上がり確認までマンツーマンで対応します。分け目・つむじ・前髪など、気になる部分に合わせて自然な仕上がりをご提案します。"
             />
             <div className="grid gap-3 sm:grid-cols-2">
@@ -362,8 +424,8 @@ export default function Home() {
       <section className="section-pad">
         <SectionHeading
           eyebrow="Salon"
-          title="店舗情報"
-          lead="関目高殿駅4番出口から徒歩1分。完全予約制のプライベートサロンです。"
+          title="大阪市旭区・関目高殿の店舗情報"
+          lead="大阪市旭区高殿の増毛エクステ専門サロンです。関目高殿駅4番出口から徒歩1分、城東区・都島区・守口市・門真市・寝屋川市・東大阪市方面からも通いやすい完全予約制サロンです。"
         />
         <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[1fr_0.9fr]">
           <dl className="overflow-hidden rounded-[1.75rem] border border-almond bg-white shadow-soft">
@@ -392,6 +454,23 @@ export default function Home() {
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      <section className="section-pad bg-cream/70">
+        <SectionHeading
+          eyebrow="Blog"
+          title="増毛エクステ関連記事"
+          lead="増毛エクステについて詳しく知りたい方へ、初めての方向けの記事をまとめています。"
+        />
+        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
+          {blogLinks.map((post) => (
+            <a key={post.href} href={post.href} className="rounded-2xl border border-almond bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft">
+              <h3 className="text-lg font-bold text-walnut">{post.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-cocoa">{post.excerpt}</p>
+              <p className="mt-5 text-sm font-bold text-sage">詳しくはこちら</p>
+            </a>
+          ))}
         </div>
       </section>
 

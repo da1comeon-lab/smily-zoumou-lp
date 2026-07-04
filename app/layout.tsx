@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 
-const siteTitle = "大阪の増毛エクステ専門店｜分け目・つむじ・前髪の自然なボリューム｜smily";
+const siteTitle = "大阪の増毛・増毛エクステ専門店｜女性・男性相談可｜smily";
 const siteDescription =
-  "大阪市旭区・関目高殿駅徒歩1分の増毛エクステ専門サロン。分け目・つむじ・前髪・トップのボリューム、地肌の透け感、髪がぺたんとするお悩みに、完全予約制のプライベート空間で自然な仕上がりをご提案します。";
+  "大阪で自然な増毛エクステならsmily。女性・男性どちらも相談可。つむじ・前髪・分け目のお悩みを自然にカバー。初めての方も安心のカウンセリング。";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -19,7 +19,15 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "増毛エクステサロンsmily",
     type: "website",
-    locale: "ja_JP"
+    locale: "ja_JP",
+    images: [
+      {
+        url: "/smily-main-hero.webp",
+        width: 1536,
+        height: 1024,
+        alt: "大阪の増毛エクステ専門店smily"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
