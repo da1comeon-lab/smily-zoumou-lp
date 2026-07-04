@@ -161,7 +161,7 @@ export default function Home() {
           <p className="sr-only md:not-sr-only md:mb-7 md:text-4xl md:font-bold md:leading-tight md:text-walnut">
             大阪で自然な増毛エクステならsmily
           </p>
-          <div className="relative overflow-hidden rounded-[1.5rem] bg-linen shadow-soft md:rounded-[2rem]">
+          <div className="relative -mx-4 overflow-hidden rounded-none bg-linen shadow-soft sm:mx-0 sm:rounded-[1.5rem] md:rounded-[2rem]">
             <img
               src="/smily-main-hero.webp"
               alt="分け目・つむじ・前髪に自然なボリュームを。大阪・関目高殿駅すぐの増毛エクステ専門プライベートサロン。"
@@ -286,11 +286,11 @@ export default function Home() {
           title="増毛エクステ施術例"
           lead="前髪・分け目・つむじの仕上がりイメージを掲載しています。"
         />
-        <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-3">
+        <div className="-mx-4 grid gap-5 sm:mx-auto sm:max-w-6xl lg:grid-cols-3">
           {beforeAfterItems.map((item) => (
-            <article key={item.title} className="overflow-hidden rounded-2xl bg-white shadow-sm">
-              <div className="bg-cream p-2 md:p-3">
-                <div className="overflow-hidden rounded-xl">
+            <article key={item.title} className="overflow-hidden rounded-none bg-white shadow-sm sm:rounded-2xl">
+              <div className="bg-cream p-0 sm:p-2 md:p-3">
+                <div className="overflow-hidden rounded-none sm:rounded-xl">
                   <img src={item.imageSrc} alt={item.imageAlt} loading="lazy" className="block h-auto w-full" />
                 </div>
               </div>
